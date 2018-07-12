@@ -21,25 +21,23 @@ import (
 	"io/ioutil"
 	"strconv"
 
-	"github.com/rootchain/go-rootchain/dev/cids"
-
 	blocks "gx/ipfs/QmTRCUvZLiir12Qr6MV3HKfKMHX8Nf1Vddn6t2g5nsQSb9/go-block-format"
 	ipld "gx/ipfs/QmWi2BYBL5gJ3CiAiQchg6rn1A8iBsrWy51EYxvHVjFvLb/go-ipld-format"
 	cid "gx/ipfs/QmapdYm1b22Frv3k17fqrBYTFRxwiaVJkB299Mfn33edeB/go-cid"
 
 	"github.com/ipfn/go-ipfn-cells"
 	"github.com/ipfs/go-ipfs/core/coredag"
+	"github.com/rootchain/go-rootchain/dev/contents"
 
 	// TODO
-	_ "github.com/ipfn/go-ipfn-cells/chainops"
-	_ "github.com/ipfn/go-ipfn-cells/synaptic"
-	_ "github.com/rootchain/go-rootchain/dev/cids"
+	_ "github.com/rootchain/go-rootchain/dev/chainops"
+	_ "github.com/rootchain/go-rootchain/dev/synaptic"
 )
 
 const formatName = "cell-binary"
 
 func init() {
-	ipld.DefaultBlockDecoder.Register(cids.BinaryCell, decodeCellBlock)
+	ipld.DefaultBlockDecoder.Register(contents.BinaryCell, decodeCellBlock)
 	coredag.DefaultInputEncParsers.AddParser(formatName, formatName, parseCellDag)
 }
 
